@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+     Weathapp - {{ block.super }}
+{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'weather/css/landing.css' %}">
+{% endblock %}
+
+{% block background_video %}
+    <div class="hero-video is-flex-mobile">
+        <video poster="{% static 'seashore-cover.jpg' %}" id="bgvid"
+               playsinline autoplay muted loop>
+            <source src="{% static 'seashore.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+{% endblock %}
+
+{% block middle_column %}
+<h1 class="icon-text is-size-1 has-text-light">
+    <span class="icon"><i class="fas fa-wind"></i></span><span>  Weathapp</span>
+</h1>
+<div class="box py-3" style="opacity: 90%">
+    <form method="post" action="{% url 'weather:current' %}">
+        {% csrf_token %}
+        <div class="field">
+            <label class="is-size-5">Input the location you're interested in!</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="e.g. Moscow" name="location" required>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

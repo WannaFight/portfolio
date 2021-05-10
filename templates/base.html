@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}WannaFight{% endblock %}</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
+          rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet"
+          href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/>
+
+    {% block custom_css %}
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'SupremeWebsite/css/landing.css' %}">
+    {% endblock %}
+
+    <script src="https://kit.fontawesome.com/1a5f3f19e3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<section class="hero is-info is-fullheight has-background">
+    {% block background_video %}
+    {% endblock %}
+    <!--Header with Navbar starts-->
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="../">
+                        <img src="http://bulma.io/images/bulma-type-white.png"
+                             alt="Logo">
+                    </a>
+                    <span class="navbar-burger burger"
+                          data-target="navbarMenu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                </div>
+                <div id="navbarMenu" class="navbar-menu">
+                    <div class="navbar-end">
+                        <span class="navbar-item">
+                            <a class="button is-white is-outlined"
+                               href="{% url 'main_index' %}">
+                                <span class="icon">
+                                    <i class="fa fa-home"></i>
+                                </span>
+                                <span>Home</span>
+                            </a>
+                        </span>
+                        <span class="navbar-item">
+                                <a class="button is-white is-outlined"
+                                   href="https://github.com/BulmaTemplates/bulma-templates/blob/master/templates/landing.html">
+                                    <span class="icon">
+                                        <i class="fa fa-github"></i>
+{#                                        <i class="fab fa-airbnb"></i>#}
+                                    </span>
+                                    <span>View Source</span>
+                                </a>
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--Header with Navbar ends-->
+
+    <!--Body starts-->
+    <div class="hero-body">
+        <div class="container has-text-left">
+            <div class="columns mb-6">
+                <div class="column"></div>
+                <div class="column is-half">
+                    {% block middle_column %}
+                    <div class="box" style="opacity: 80%">
+                        <nav class="panel">
+                            <p class="panel-heading">Available projects</p>
+                            {% for app in my_apps %}
+                                <a class="panel-block is-active" href="{{ app.link }}">
+                                    <span class="panel-icon">
+                                        <i class="fas fa-bookmark" aria-hidden="true"></i>
+                                    </span>{{ app.name }}
+                                </a>
+                            {% endfor %}
+                        </nav>
+                    </div>
+                    {% endblock %}
+                </div>
+                <div class="column"></div>
+            </div>
+        </div>
+    </div>
+    <!--Body ends-->
+
+</section>
+{#    <script async type="text/javascript" src="../js/bulma.js"></script>#}
+</body>
+
+</html>

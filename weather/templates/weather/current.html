@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Weathapp - {{ city.name }} - {{ block.super }}
+{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'weather/css/landing.css' %}">
+{% endblock %}
+
+{% block background_video %}
+    <div class="hero-video is-flex-mobile">
+        <video poster="{% static 'seashore-cover.jpg' %}" id="bgvid"
+               playsinline autoplay muted loop>
+            <source src="{% static 'seashore.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+{% endblock %}
+
+{% block middle_column %}
+    <div class="box mb-6 has-text-black" style="opacity: 90%">
+        {% if code == 200 %}
+            <p class="title is-3 has-text-dark">Weather in {{ city.name }}, {{ city.country }}</p>
+            <p class="subtitle is-5 has-text-grey py-0">Data captured in {{ weather.time }}</p>
+            <div class="columns">
+                <div class="column is-half">
+                    <div class="columns is-vcentered is-gapless">
+                        <div class="column is-two-fifths has-text-left-desktop">
+                            <h1 class="is-size-2">{% if weather.temp > 0 %}+{% endif %}{{ weather.temp }}° C</h1>
+                        </div>
+                        <div class="column has-text-left">
+                            <figure class="image is-64x64">
+                                <img src="{{ weather.icon }}" alt="Weather icon">
+                            </figure>
+                        </div>
+                        <div class="column is-two-fifths">
+                            <p>{{ weather.description }}</p>
+                            <p>Feels like {% if weather.temp > 0 %}+{% endif %}{{ weather.temp_feels_like }}° C</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <p>
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-wind"></i></span><span>{{ weather.wind_speed }} m/s, </span>
+                            <span class="icon"><i class="fas fa-location-arrow"></i></span><span>{{ weather.wind_dir }}</span>
+                        </span>
+                    </p>
+                    <p>
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-tint"></i></span><span>{{ weather.humidity }}%</span>
+                        </span>
+                    </p>
+                    <p>
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-ruler-vertical"></i></span><span>{{ weather.pressure}} mm Hg</span>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <h1 class="is-size-1">Oops!</h1>
+            <p>{{ error_message }}</p>
+        {% endif %}
+        <div class="has-text-centered">
+            <a class="button" href="{% url 'weather:reset' %}">New location</a>
+        </div>
+    </div>
+{% endblock %}
