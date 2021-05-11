@@ -30,7 +30,5 @@
 ```
 
 ## Plans 📝
-1. Finish [weather app](/weather) (backgrounds videos depending on weather condition)
-2. Create local docs for apps
-3. Host on Heroku + set custom domain
-4. Switch to PostgreSQL
+1. Host on Heroku + set custom domain
+2. Switch to PostgreSQL
