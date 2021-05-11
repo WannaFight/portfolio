@@ -1,6 +1,5 @@
 # Portfolio website 👨‍💻
 
----
 ## What's inside 🔍
 1. Integration of VK API ([local docs](/vk_friends), [official docs](https://vk.com/dev/docs)) 
 2. Weather web app ([local docs](/weather), [official docs](https://www.weatherapi.com/docs/))
